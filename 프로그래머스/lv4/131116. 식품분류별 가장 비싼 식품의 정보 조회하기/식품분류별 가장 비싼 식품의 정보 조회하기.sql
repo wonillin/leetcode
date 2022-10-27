@@ -1,16 +1,15 @@
 -- 코드를 입력하세요
-with cte as(
-select product_name
-      ,row_number() over(partition by category order by price desc) rn
-from food_product
-where category in ('과자', '국', '김치', '식용유')
-)
-
-select category
-      ,price max_price
-      ,product_name
-from food_product
-where product_name in (select product_name 
-                       from cte
-                       where rn = 1)
-order by price desc
+WITH CTE AS(
+SELECT *
+      ,DENSE_RANK() OVER (PARTITION BY CATEGORY ORDER BY PRICE DESC) rk
+  FROM FOOD_PRODUCT
+ WHERE CATEGORY IN ('과자', '국', '김치', '식용유'))
+  
+SELECT CATEGORY 
+      ,PRICE 'MAX_PRICE'
+      ,PRODUCT_NAME
+  FROM FOOD_PRODUCT
+ WHERE PRODUCT_NAME IN (SELECT PRODUCT_NAME
+                          FROM CTE
+                         WHERE rk = 1)
+ ORDER BY PRICE DESC
