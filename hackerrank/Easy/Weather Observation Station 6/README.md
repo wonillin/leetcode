@@ -3,11 +3,4 @@ The STATION table is described as follows:
 
 ![image](https://s3.amazonaws.com/hr-challenge-images/9336/1449345840-5f0a551030-Station.jpg)
 
-where LAT_N is the northern latitude and LONG_W is the western longitude.  
-
-Explanation
-
-When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WXY, with lengths 3,3,4 and 3. The longest name is PQRS, but there are 3 options for shortest named city. Choose ABC, because it comes first alphabetically.
-
-Note
-You can write two separate queries to get the desired output. It need not be a single query.
+where LAT_N is the northern latitude and LONG_W is the western longitude. 
