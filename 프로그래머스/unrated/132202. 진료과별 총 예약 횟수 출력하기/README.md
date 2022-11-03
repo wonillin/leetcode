@@ -16,7 +16,7 @@ Empty
 
 ### 문제 설명
 
-<p>다음은 종합병원의 진료 예약정보를 담은 <code>APPOINMENT</code> 테이블 입니다.<br>
+<p>다음은 종합병원의 진료 예약정보를 담은 <code>APPOINTMENT</code> 테이블 입니다.<br>
 <code>APPOINTMENT</code> 테이블은 다음과 같으며 <code>APNT_YMD</code>, <code>APNT_NO</code>, <code>PT_NO</code>, <code>MCDP_CD</code>, <code>MDDR_ID</code>, <code>APNT_CNCL_YN</code>, <code>APNT_CNCL_YMD</code>는 각각 진료예약일시, 진료예약번호, 환자번호, 진료과코드, 의사ID, 예약취소여부, 예약취소날짜를 나타냅니다.</p>
 <table class="table">
         <thead><tr>
