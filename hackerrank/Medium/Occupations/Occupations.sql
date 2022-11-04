@@ -1,0 +1,12 @@
+WITH CTE AS(
+SELECT *
+       ,ROW_NUMBER() OVER (PARTITION BY Occupation ORDER BY Name) rn
+  FROM Occupations)
+  
+
+SELECT MAX(CASE WHEN Occupation LIKE 'D%' THEN Name ELSE NULL END)
+      ,MAX(CASE WHEN Occupation LIKE 'P%' THEN Name ELSE NULL END)
+      ,MAX(CASE WHEN Occupation LIKE 'S%' THEN Name ELSE NULL END)
+      ,MAX(CASE WHEN Occupation LIKE 'A%' THEN Name ELSE NULL END)
+  FROM CTE
+ GROUP BY rn
