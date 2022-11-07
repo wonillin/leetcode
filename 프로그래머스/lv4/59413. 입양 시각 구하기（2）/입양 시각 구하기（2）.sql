@@ -1,9 +1,14 @@
-with recursive time as(
-select 0 as h
-union all
-select h + 1 from time where h < 23)
-
-select h 'hour', count(hour(datetime)) 'count'
-from time 
-     left join animal_outs on h = hour(datetime)
-group by h
+WITH RECURSIVE num_hour AS(
+    SELECT 0 AS n
+    UNION ALL
+    SELECT n + 1 
+      FROM num_hour
+    WHERE n < 23
+)
+  
+SELECT n 'HOUR'
+      ,COUNT(HOUR(DATETIME)) 'COUNT'    
+  FROM num_hour nh
+       LEFT JOIN ANIMAL_OUTS ao ON nh.n = HOUR(ao.DATETIME)
+ GROUP BY hour
+ ORDER BY hour
