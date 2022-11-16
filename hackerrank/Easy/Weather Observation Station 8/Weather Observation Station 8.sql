@@ -1,4 +1,4 @@
-SELECT CITY
-  FROM STATION
- WHERE CITY REGEXP ('^a|^e|^i|^o|^u')
-   AND CITY REGEXP ('a$|e$|i$|o$|u$')
+SELECT DISTINCT city
+  FROM station
+ WHERE city REGEXP '^[aeiou].*'
+   AND city REGEXP '.*[aeiou]$'
