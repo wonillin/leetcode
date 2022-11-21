@@ -16,7 +16,7 @@ Empty
 
 ### 문제 설명
 
-<p>다음은 환자 정보를 담은 <code>PATIENT</code> 테이블과 의사 정보를 담은 <code>DOCTOR</code> 테이블, 그리고 진료 예약목록을 담은 <code>APPOINMENT</code>에 대한 테이블입니다. <code>PATIENT</code> 테이블은 다음과 같으며 <code>PT_NO</code>, <code>PT_NAME</code>, <code>GEND_CD</code>, <code>AGE</code>, <code>TLNO</code>는 각각 환자번호, 환자이름, 성별코드, 나이, 전화번호를 의미합니다.</p>
+<p>다음은 환자 정보를 담은 <code>PATIENT</code> 테이블과 의사 정보를 담은 <code>DOCTOR</code> 테이블, 그리고 진료 예약목록을 담은 <code>APPOINTMENT</code>에 대한 테이블입니다. <code>PATIENT</code> 테이블은 다음과 같으며 <code>PT_NO</code>, <code>PT_NAME</code>, <code>GEND_CD</code>, <code>AGE</code>, <code>TLNO</code>는 각각 환자번호, 환자이름, 성별코드, 나이, 전화번호를 의미합니다.</p>
 <table class="table">
         <thead><tr>
 <th>Column name</th>
@@ -140,7 +140,7 @@ Empty
 
 <h5>문제</h5>
 
-<p><code>PATIENT</code>, <code>DOCTOR</code> 그리고 <code>APPOINMENT</code> 테이블에서 2022년 4월 13일 취소되지 않은 흉부외과(CS) 진료 예약 내역을 조회하는 SQL문을 작성해주세요. 진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시 항목이 출력되도록 작성해주세요. 결과는 진료예약일시를 기준으로 오름차순 정렬하고, 진료예약일시가 같다면 환자번호를 기준으로 오름차순 정렬해주세요.</p>
+<p><code>PATIENT</code>, <code>DOCTOR</code> 그리고 <code>APPOINTMENT</code> 테이블에서 2022년 4월 13일 취소되지 않은 흉부외과(CS) 진료 예약 내역을 조회하는 SQL문을 작성해주세요. 진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시 항목이 출력되도록 작성해주세요. 결과는 진료예약일시를 기준으로 오름차순 정렬해주세요.</p>
 
 <hr>
 
