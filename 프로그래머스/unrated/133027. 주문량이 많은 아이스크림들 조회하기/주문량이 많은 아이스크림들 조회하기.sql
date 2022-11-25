@@ -1,7 +1,7 @@
 -- 코드를 입력하세요
-SELECT F.FLAVOR
-  FROM FIRST_HALF F
-       INNER JOIN JULY J ON F.FLAVOR = J.FLAVOR
- GROUP BY FLAVOR
- ORDER BY SUM(F.TOTAL_ORDER) + SUM(J.TOTAL_ORDER) DESC
+SELECT f.flavor
+  FROM first_half f
+       INNER JOIN july j ON f.flavor = j.flavor
+ GROUP BY 1
+ ORDER BY SUM(f.total_order) + SUM(j.total_order) DESC
  LIMIT 3

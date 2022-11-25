@@ -1,11 +1,10 @@
 -- 코드를 입력하세요
-SELECT FP.PRODUCT_ID
-      ,PRODUCT_NAME
-      ,PRICE * SUM(AMOUNT) TOTAL_SALES
-  FROM FOOD_PRODUCT FP
-       INNER JOIN FOOD_ORDER FO ON FP.PRODUCT_ID = FO.PRODUCT_ID
- WHERE PRODUCE_DATE BETWEEN '2022-05-01 00:00:00' AND '2022-05-31 23:59:59'
- GROUP BY FP.PRODUCT_ID
- ORDER BY TOTAL_SALES DESC, FP.PRODUCT_ID
+SELECT fp.product_id
+      ,product_name
+      ,SUM(amount) * price total_sales
+  FROM food_product fp
+       INNER JOIN food_order fo ON fp.product_id = fo.product_id
+ WHERE producE_date BETWEEN '2022-05-01' AND '2022-05-31' 
+ GROUP BY fp.product_id
+ ORDER BY total_sales DESC, fp.product_id
  
-
