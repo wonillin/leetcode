@@ -1,14 +1,14 @@
-WITH RECURSIVE num_hour AS(
+WITH RECURSIVE cnt_hour AS(
     SELECT 0 AS n
     UNION ALL
     SELECT n + 1 
-      FROM num_hour
-    WHERE n < 23
+      FROM cnt_hour
+     WHERE n < 23
 )
-  
-SELECT n 'HOUR'
-      ,COUNT(HOUR(DATETIME)) 'COUNT'    
-  FROM num_hour nh
-       LEFT JOIN ANIMAL_OUTS ao ON nh.n = HOUR(ao.DATETIME)
+
+SELECT cnt_hour.n 'hour'
+      ,COUNT(HOUR(DATETIME)) 'count'
+  FROM cnt_hour
+       LEFT JOIN animal_outs ao ON cnt_hour.n = HOUR(ao.DATETIME)
  GROUP BY hour
  ORDER BY hour
