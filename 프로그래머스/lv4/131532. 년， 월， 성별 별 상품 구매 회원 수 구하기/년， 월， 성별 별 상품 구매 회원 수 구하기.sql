@@ -1,10 +1,11 @@
 -- 코드를 입력하세요
-SELECT YEAR(SALES_DATE) 'YEAR'
-      ,MONTH(SALES_DATE) 'MONTH'
-      ,GENDER
-      ,COUNT(DISTINCT OS.USER_ID) 'USERS'
- FROM USER_INFO UI
-      INNER JOIN ONLINE_SALE OS ON UI.USER_ID = OS.USER_ID
-WHERE GENDER IS NOT NULL
-GROUP BY YEAR(SALES_DATE) ,MONTH(SALES_DATE), GENDER
-ORDER BY YEAR(SALES_DATE) ,MONTH(SALES_DATE), GENDER 
+SELECT YEAR(sales_date) 'YEAR'
+      ,MONTH(sales_date) 'MONTH'
+      ,gender
+      ,COUNT(DISTINCT os.user_id) USERS
+  FROM user_info ui
+       INNER JOIN online_sale os ON ui.user_id = os.user_id
+ WHERE gender IS NOT NULL 
+ GROUP BY YEAR(sales_date), MONTH(sales_date), gender
+ ORDER BY YEAR(sales_date), MONTH(sales_date), gender
+ 
