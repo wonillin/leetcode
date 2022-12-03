@@ -1,14 +1,16 @@
 -- 코드를 입력하세요
-WITH CTE AS(
+WITH cte AS(
 SELECT cart_id
-      ,GROUP_CONCAT(name)
-FROM cart_products
-GROUP BY cart_id
-HAVING FIND_IN_SET('Milk', GROUP_CONCAT(name)) 
-       AND FIND_IN_SET('Yogurt', GROUP_CONCAT(name)))
+      ,GROUP_CONCAT(name) name
+  FROM cart_products
+ GROUP BY cart_id)
+ 
+SELECT DISTINCT cart_id
+  FROM cart_products
+ WHERE cart_id IN (SELECT cart_id  
+                     FROM cte
+                    WHERE name REGEXP 'Yogurt'
+                      AND name REGEXP 'Milk')
+ ORDER BY cart_id
 
-SELECT cart_id
-FROM cart_products
-WHERE cart_id IN (SELECT cart_id FROM cte)
-GROUP BY cart_id
-ORDER BY cart_id
+              
