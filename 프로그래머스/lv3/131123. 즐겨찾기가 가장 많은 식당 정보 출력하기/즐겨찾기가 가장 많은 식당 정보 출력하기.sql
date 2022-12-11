@@ -1,13 +1,13 @@
 -- 코드를 입력하세요
-WITH CTE AS(
-SELECT *
-      ,ROW_NUMBER() OVER (PARTITION BY FOOD_TYPE ORDER BY FAVORITES DESC) rn
-  FROM REST_INFO)
+WITH rest_dr AS
+(SELECT *
+      ,DENSE_RANK() OVER(PARTITION BY food_type ORDER BY favorites DESC) dr
+  FROM rest_info)
   
-SELECT FOOD_TYPE
-      ,REST_ID
-      ,REST_NAME
-      ,FAVORITES
-  FROM CTE
- WHERE rn = 1
- ORDER BY FOOD_TYPE DESC
+SELECT food_type
+      ,rest_id
+      ,rest_name
+      ,favorites
+  FROM rest_dr
+ WHERE dr = 1
+ ORDER BY food_type DESC
