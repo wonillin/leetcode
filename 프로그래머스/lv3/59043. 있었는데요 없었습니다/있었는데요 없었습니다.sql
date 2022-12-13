@@ -1,7 +1,7 @@
 -- 코드를 입력하세요
-SELECT AI.ANIMAL_ID
-      ,AI.NAME
-  FROM ANIMAL_INS AI
-       INNER JOIN ANIMAL_OUTS AO ON AI.ANIMAL_ID = AO.ANIMAL_ID
- WHERE AI.DATETIME > AO.DATETIME   
- ORDER BY AI.DATETIME
+SELECT ai.animal_id
+      ,ai.name
+  FROM animal_ins ai
+       INNER JOIN animal_outs ao ON ai.animal_id = ao.animal_id
+ WHERE ai.datetime > ao.datetime
+ ORDER BY ai.datetime 
