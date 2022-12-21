@@ -1,7 +1,7 @@
 -- 코드를 입력하세요
-SELECT HOUR(datetime) 'HOUR'
-      ,COUNT(HOUR(datetime)) 'COUNT'
+SELECT HOUR(datetime) HOUR
+      ,COUNT(datetime) HOUR
   FROM animal_outs
- WHERE DATE_FORMAT(datetime, '%T') BETWEEN '09:00' AND '19:59'
- GROUP BY HOUR(datetime)
- ORDER BY HOUR(datetime)
+ WHERE HOUR(datetime) BETWEEN 9 AND 19
+ GROUP BY hour
+ ORDER BY hour
