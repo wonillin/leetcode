@@ -1,8 +1,12 @@
 -- 코드를 입력하세요
-SELECT ai.animal_id
-      ,ai.animal_type
-      ,ai.name
-  FROM animal_ins ai
-       INNER JOIN animal_outs ao ON ai.animal_id = ao.animal_id
- WHERE ai.sex_upon_intake REGEXP 'Intact'
-   AND ao.sex_upon_outcome NOT REGEXP 'Intact'
+SELECT animal_id
+      ,animal_type
+      ,name
+  FROM animal_ins
+ WHERE sex_upon_intake REGEXP 'Intact'
+   AND animal_id IN (SELECT animal_id
+                       FROM animal_outs
+                      WHERE sex_upon_outcome REGEXP ('Spayed|Neutered'))
+ ORDER BY animal_id
+                      
+                      
