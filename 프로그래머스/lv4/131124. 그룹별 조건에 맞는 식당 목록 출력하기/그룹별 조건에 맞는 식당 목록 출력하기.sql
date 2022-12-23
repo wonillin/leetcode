@@ -1,15 +1,22 @@
 # -- 코드를 입력하세요
-SELECT MEMBER_NAME
-      ,REVIEW_TEXT
-      ,DATE_FORMAT(REVIEW_DATE, '%Y-%m-%d') REVIEW_DATE
-  FROM MEMBER_PROFILE MP
-       INNER JOIN REST_REVIEW RR ON MP.MEMBER_ID = RR.MEMBER_ID
- WHERE RR.MEMBER_ID IN (SELECT MEMBER_ID 
-                          FROM (SELECT MEMBER_ID
-                                      ,DENSE_RANK() OVER (ORDER BY COUNT(MEMBER_ID) DESC) RN
-                                  FROM REST_REVIEW
-                                 GROUP BY MEMBER_ID) a
-                         WHERE RN = 1)
-ORDER BY REVIEW_DATE, REVIEW_TEXT
+WITH cte AS
+(SELECT member_id
+       ,COUNT(member_id) cnt
+  FROM rest_review
+ GROUP BY member_id)
 
+SELECT member_name
+      ,review_text
+      ,DATE_FORMAT(review_date, '%Y-%m-%d') review_date
+  FROM member_profile m
+       INNER JOIN rest_review r ON m.member_id = r.member_id
+ WHERE m.member_id IN (SELECT member_id
+                       FROM (SELECT member_id
+                                    ,cnt
+                                    ,DENSE_RANK() OVER(ORDER BY cnt DESC) dr
+                               FROM cte) a
+                              WHERE dr = 1) 
+ ORDER BY review_date, review_text
 
+ 
+ 
