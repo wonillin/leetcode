@@ -1,16 +1,11 @@
 -- 코드를 입력하세요
-WITH food_p AS(
-    SELECT product_name
-          ,price
-          ,category
-          ,DENSE_RANK() OVER(PARTITION BY category ORDER BY price DESC) dr
-      FROM food_product
-     WHERE category REGEXP ('과자|국|김|식용유')
-) 
-
 SELECT category
       ,price max_price
       ,product_name
-  FROM food_p
- WHERE dr = 1
+  FROM food_product
+ WHERE (category, price) IN (SELECT category
+                                   ,MAX(price) max_p
+                               FROM food_product
+                              WHERE category IN ('과자', '국', '김치', '식용유')
+                              GROUP BY category)
  ORDER BY max_price DESC
