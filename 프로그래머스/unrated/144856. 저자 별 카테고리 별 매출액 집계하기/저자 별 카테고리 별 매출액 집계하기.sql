@@ -1,11 +1,20 @@
 -- 코드를 입력하세요
-SELECT b.author_id
-      ,author_name
-      ,category
-      ,SUM(sales * price) total_price
-  FROM book b
-       LEFT JOIN author a ON b.author_id = a.author_id
-       LEFT JOIN book_sales bs ON b.book_id = bs.book_id
- WHERE sales_date BETWEEN '2022-01-01' AND '2022-01-31'
- GROUP BY author_id, author_name, category
- ORDER BY author_id, category DESC
+WITH SALES_DATA AS (
+    SELECT 
+        A.AUTHOR_ID,
+        A.AUTHOR_NAME,
+        B.CATEGORY,
+        SUM(SALES * PRICE) AS TOTAL_SALES
+    FROM BOOK B
+    JOIN AUTHOR A ON B.AUTHOR_ID = A.AUTHOR_ID
+    JOIN BOOK_SALES ON B.BOOK_ID = BOOK_SALES.BOOK_ID
+    WHERE BOOK_SALES.SALES_DATE BETWEEN '2022-01-01' AND '2022-01-31'
+    GROUP BY A.AUTHOR_ID, A.AUTHOR_NAME, B.CATEGORY
+)
+SELECT 
+    AUTHOR_ID,
+    AUTHOR_NAME,
+    CATEGORY,
+    TOTAL_SALES
+FROM SALES_DATA
+ORDER BY AUTHOR_ID ASC, CATEGORY DESC;
