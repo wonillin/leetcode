@@ -1,6 +1,5 @@
--- 코드를 입력하세요
 WITH cte AS
-(SELECT  history_id
+(SELECT history_id
        ,daily_fee
        ,(discount_rate * 0.01) discount_rate
        ,REGEXP_REPLACE(duration_type, '[가-힣]','') duration_type
@@ -11,12 +10,10 @@ WITH cte AS
  WHERE cc.car_type = '트럭')
 
 SELECT DISTINCT history_id
-      ,CASE WHEN rent_day BETWEEN 30 AND 89 THEN ROUND(daily_fee * rent_day * (1 - 0.08))
-            WHEN rent_day >= 90 THEN ROUND(daily_fee * rent_day * (1 - 0.15))
-            WHEN rent_day BETWEEN 7 AND 29 THEN ROUND(daily_fee * rent_day * (1 - 0.05))
-            ELSE ROUND(daily_fee * rent_day)
+      ,CASE WHEN rent_day < 7 THEN ROUND(daily_fee * rent_day)
+            WHEN rent_day < 30 THEN ROUND(daily_fee * rent_day * (1 - 0.05))
+            WHEN rent_day < 90 THEN ROUND(daily_fee * rent_day * (1 - 0.08))
+            ELSE ROUND(daily_fee * rent_day * (1 - 0.15))
             END fee
  FROM cte
  ORDER BY fee DESC, history_id DESC
-
-
