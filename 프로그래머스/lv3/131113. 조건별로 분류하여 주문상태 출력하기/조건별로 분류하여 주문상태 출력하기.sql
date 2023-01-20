@@ -1,9 +1,9 @@
 SELECT order_id
       ,product_id
       ,DATE_FORMAT(out_date, '%Y-%m-%d') out_date
-      ,CASE WHEN out_date <= '2022-05-01 23:59:59' THEN '출고완료'
-            WHEN out_date > '2022-05-01 23:59:59' THEN '출고대기'
+      ,CASE WHEN out_date <= '2022-05-01' THEN '출고완료'
+            WHEN out_date > '2022-05-01' THEN '출고대기'
             ELSE '출고미정'
         END '출고여부'
   FROM food_order
- ORDER BY order_id
+ ORDER BY order_id 
