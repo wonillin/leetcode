@@ -1,7 +1,8 @@
 -- 코드를 입력하세요
-SELECT ai.animal_id
-      ,ai.name
-  FROM animal_ins ai
-       INNER JOIN animal_outs ao ON ai.animal_id = ao.animal_id
- ORDER BY TIMESTAMPDIFF(SECOND, ai.datetime, ao.datetime) DESC
+SELECT i.animal_id
+      ,i.name
+  FROM animal_ins i
+       LEFT JOIN animal_outs o ON i.animal_id = o.animal_id
+ WHERE (i.datetime AND o.datetime) IS NOT NULL
+ ORDER BY DATEDIFF(i.datetime, o.datetime)
  LIMIT 2
