@@ -7,5 +7,6 @@ SELECT month
                ,COUNT(*) OVER(PARTITION BY car_id) all_records
            FROM car_rental_company_rental_history
           WHERE start_date BETWEEN '2022-08-01' AND '2022-10-31') a
- WHERE all_records >= 5
+ WHERE records >= 1
+   AND all_records >= 5
  ORDER BY month, car_id DESC
