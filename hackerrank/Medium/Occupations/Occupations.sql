@@ -1,12 +1,10 @@
-WITH CTE AS(
-SELECT *
-       ,ROW_NUMBER() OVER (PARTITION BY Occupation ORDER BY Name) rn
-  FROM Occupations)
-  
-
-SELECT MAX(CASE WHEN Occupation LIKE 'D%' THEN Name ELSE NULL END)
-      ,MAX(CASE WHEN Occupation LIKE 'P%' THEN Name ELSE NULL END)
-      ,MAX(CASE WHEN Occupation LIKE 'S%' THEN Name ELSE NULL END)
-      ,MAX(CASE WHEN Occupation LIKE 'A%' THEN Name ELSE NULL END)
-  FROM CTE
+SELECT MAX(CASE WHEN occupation REGEXP 'doc' THEN name END)
+      ,MAX(CASE WHEN occupation REGEXP 'pro' THEN name END)
+      ,MAX(CASE WHEN occupation REGEXP 'sing' THEN name END)
+      ,MAX(CASE WHEN occupation REGEXP 'actor' THEN name END)
+  FROM
+(SELECT RANK() OVER(PARTITION BY occupation ORDER BY name) rn
+       ,name
+       ,occupation
+  FROM occupations) a
  GROUP BY rn
