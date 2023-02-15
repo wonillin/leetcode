@@ -5,8 +5,5 @@ SELECT fh.flavor
                         ,SUM(total_order) total_order
                     FROM july
                    GROUP BY flavor) july ON fh.flavor = july.flavor
- ORDER BY fh.total_order + july.total_order DESC
+ ORDER BY (fh.total_order + july.total_order) DESC
  LIMIT 3
-
-
- 
