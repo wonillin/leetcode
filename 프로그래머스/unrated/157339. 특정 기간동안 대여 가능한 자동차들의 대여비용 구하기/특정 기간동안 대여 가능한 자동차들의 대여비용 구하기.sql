@@ -16,8 +16,7 @@ SELECT car_id
       ,car_type
       ,ROUND(fee) fee
   FROM cte
- WHERE fee IS NOT NULL
-   AND (fee >= 500000 AND fee < 2000000)
+ WHERE (fee >= 500000 AND fee < 2000000)
  ORDER BY fee DESC, car_type, car_id DESC
    
 # SELECT cc.car_id
