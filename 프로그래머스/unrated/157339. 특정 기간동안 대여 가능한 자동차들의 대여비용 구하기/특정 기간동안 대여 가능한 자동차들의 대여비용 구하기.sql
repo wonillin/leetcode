@@ -8,8 +8,8 @@ WITH cte AS
        LEFT JOIN car_rental_company_rental_history rh ON cc.car_id = rh.car_id
        LEFT JOIN car_rental_company_discount_plan dp ON cc.car_type = dp.car_type
  WHERE cc.car_id NOT IN (SELECT car_id
-                        FROM car_rental_company_rental_history
-                       WHERE '2022-11' BETWEEN DATE_FORMAT(start_date, '%Y-%m') AND DATE_FORMAT(end_date, '%Y-%m'))
+                           FROM car_rental_company_rental_history
+                          WHERE '2022-11' BETWEEN DATE_FORMAT(start_date, '%Y-%m') AND DATE_FORMAT(end_date, '%Y-%m'))
    AND cc.car_type REGEXP '세단|suv')          
 
 SELECT car_id
