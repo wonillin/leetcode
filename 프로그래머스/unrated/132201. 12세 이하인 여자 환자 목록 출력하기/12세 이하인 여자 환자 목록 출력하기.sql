@@ -8,3 +8,4 @@ SELECT pt_name
  WHERE age <= 12
    AND gend_cd = 'W'
  ORDER BY age DESC, pt_name
+ 
