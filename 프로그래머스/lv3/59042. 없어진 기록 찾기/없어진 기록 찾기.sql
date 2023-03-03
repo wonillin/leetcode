@@ -1,6 +1,7 @@
-SELECT animal_id
-      ,name
-  FROM animal_outs 
- WHERE animal_id NOT IN (SELECT animal_id
-                           FROM animal_ins)
- ORDER BY 1, 2
+SELECT o.animal_id
+      ,o.name
+  FROM animal_outs o
+       LEFT JOIN animal_ins i ON o.animal_id = i.animal_id
+ WHERE i.animal_id IS NULL
+ ORDER BY animal_id
+      
