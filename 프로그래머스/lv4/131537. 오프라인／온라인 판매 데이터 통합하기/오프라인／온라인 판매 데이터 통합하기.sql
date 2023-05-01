@@ -2,16 +2,18 @@
 SELECT DATE_FORMAT(sales_date, '%Y-%m-%d') sales_date
       ,product_id
       ,user_id
-      ,sales_amount
+      ,SUM(sales_amount) sales_amount
   FROM online_sale
  WHERE sales_date BETWEEN '2022-03-01' AND '2022-03-31'
+ GROUP BY sales_date, product_id, user_id
  
 UNION ALL
 
 SELECT DATE_FORMAT(sales_date, '%Y-%m-%d') sales_date
       ,product_id
       ,NULL AS user_id
-      ,sales_amount
+      ,SUM(sales_amount) sales_amount
   FROM offline_sale
  WHERE sales_date BETWEEN '2022-03-01' AND '2022-03-31'
-ORDER BY sales_date, product_id, user_id
+ GROUP BY sales_date, product_id, user_id
+ ORDER BY sales_date, product_id, user_id
