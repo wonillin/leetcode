@@ -1,17 +1,15 @@
 WITH RECURSIVE cte AS(
-SELECT 0 AS h
- UNION ALL
-SELECT h + 1 
-  FROM cte
- WHERE h < 23
+    SELECT 0 hour
+    UNION ALL
+    SELECT hour + 1 
+      FROM cte
+     WHERE hour < 23
 )
 
-SELECT h hour
-      ,COUNT(HOUR(a.datetime)) count
-  FROM cte
-       LEFT JOIN animal_outs a  ON cte.h = HOUR(a.datetime)
- GROUP BY 1
- 
+SELECT hour
+      ,COUNT(hour(ao.datetime)) AS count
+  FROM animal_outs ao
+       RIGHT JOIN cte ON hour(ao.datetime) = hour 
+ GROUP BY hour
+ ORDER BY hour
 
-
- 
