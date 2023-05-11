@@ -1,11 +1,5 @@
 def solution(num_list):
-    answer = 0
-    answer1 = 0
+    even_num = num_list[::2]
+    odd_num = num_list[1::2]
     
-    for i in range(len(num_list)):
-        if i % 2 == 0:
-            answer += num_list[i]
-        else:
-            answer1 += num_list[i]
-    
-    return answer if answer > answer1 else answer1
+    return max(sum(even_num), sum(odd_num))
