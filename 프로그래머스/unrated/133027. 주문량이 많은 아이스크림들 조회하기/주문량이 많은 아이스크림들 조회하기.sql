@@ -1,7 +1,17 @@
 -- 코드를 입력하세요
-SELECT fh.flavor
-  FROM first_half fh
-       LEFT JOIN july j ON fh.flavor = j.flavor
+
+SELECT flavor
+  FROM 
+(SELECT flavor
+      ,total_order
+  FROM first_half
+ 
+UNION ALL
+
+SELECT flavor
+      ,total_order
+  FROM july) a
  GROUP BY flavor
- ORDER BY SUM(fh.total_order + j.total_order) DESC
+ ORDER BY SUM(total_order) DESC
  LIMIT 3
+ 
