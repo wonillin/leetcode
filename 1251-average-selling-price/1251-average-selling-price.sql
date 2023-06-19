@@ -1,13 +1,8 @@
 # Write your MySQL query statement below
-WITH cte AS
-(SELECT p.product_id
-      ,price
-      ,SUM(IF(purchase_date BETWEEN start_date AND end_date, units, 0)) a_price
+SELECT p.product_id
+      ,ROUND(SUM(price * units) / SUM(units), 2) average_price
   FROM prices p
-       LEFT JOIN unitssold u ON p.product_id = u.product_id
-  GROUP BY p.product_id, price)
-
-SELECT product_id
-      ,ROUND(SUM(price * a_price) / SUM(a_price), 2) average_price
-  FROM cte
- GROUP BY product_id
+       INNER JOIN unitssold u ON p.product_id = u.product_id
+ WHERE purchase_date >= start_date
+   AND purchase_date <= end_date
+ GROUP BY p.product_id
