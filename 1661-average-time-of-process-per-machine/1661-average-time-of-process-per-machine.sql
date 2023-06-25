@@ -1,14 +1,8 @@
 # Write your MySQL query statement below
-WITH cte AS
-(SELECT DISTINCT machine_id
-      ,activity_type
-      ,SUM(timestamp) OVER(PARTITION BY machine_id, activity_type) timestamp
-  FROM activity)
-
-SELECT DISTINCT machine_id
-      ,ROUND(SUM(timestamp) / (SELECT COUNT(DISTINCT process_id) FROM activity), 3) processing_time
-  FROM
-(SELECT machine_id
-       ,IF(activity_type = 'start', -timestamp, timestamp) timestamp
-  FROM cte) a
+SELECT a1.machine_id
+      ,ROUND(AVG(a2.timestamp - a1.timestamp), 3) processing_time
+  FROM activity a1
+       INNER JOIN activity a2 ON a1.process_id = a2.process_id
+                             AND a1.machine_id = a2.machine_id
+                             AND a1.timestamp < a2.timestamp
  GROUP BY machine_id
