@@ -4,8 +4,7 @@ SELECT YEAR(sales_date) 'year'
       ,gender
       ,COUNT(DISTINCT os.user_id) 'users'
   FROM online_sale os
-       LEFT JOIN user_info ui ON os.user_id = ui.user_id
+       INNER JOIN user_info ui ON os.user_id = ui.user_id
  WHERE gender IS NOT NULL
  GROUP BY year, month, gender
  ORDER BY year, month, gender
- 
