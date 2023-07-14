@@ -11,5 +11,3 @@ SELECT p.member_name
                                 GROUP BY member_id) a
                         WHERE rk = 1)
  ORDER BY review_date, review_text
-              
-                     
