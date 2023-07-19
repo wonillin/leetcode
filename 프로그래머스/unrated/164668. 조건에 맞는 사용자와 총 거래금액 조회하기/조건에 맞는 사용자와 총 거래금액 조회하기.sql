@@ -9,5 +9,3 @@ SELECT user_id
  GROUP BY writer_id
  HAVING SUM(price) >= 700000
  ORDER BY SUM(price)
-
-
