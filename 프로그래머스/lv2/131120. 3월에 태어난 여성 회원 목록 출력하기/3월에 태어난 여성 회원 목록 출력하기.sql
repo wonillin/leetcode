@@ -7,4 +7,3 @@ SELECT member_id
  WHERE gender = 'W'
    AND MONTH(date_of_birth) = 3
    AND tlno IS NOT NULL
- ORDER BY member_id
