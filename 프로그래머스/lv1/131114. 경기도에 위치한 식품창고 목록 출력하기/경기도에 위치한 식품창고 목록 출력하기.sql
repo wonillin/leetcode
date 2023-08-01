@@ -4,4 +4,4 @@ SELECT warehouse_id
       ,address
       ,IFNULL(freezer_yn, 'N') freezer_yn
   FROM food_warehouse
- WHERE address REGEXP '경기도'
+ WHERE address LIKE '경기도%'
