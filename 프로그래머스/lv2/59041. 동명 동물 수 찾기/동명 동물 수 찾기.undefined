@@ -5,4 +5,4 @@ SELECT name
  GROUP BY name
 HAVING name IS NOT NULL
    AND COUNT(name) >= 2
- ORDER BY name  
+ ORDER BY name
