@@ -14,4 +14,3 @@ SELECT flavor
  GROUP BY flavor
  ORDER BY SUM(total_order) DESC
  LIMIT 3
- 
