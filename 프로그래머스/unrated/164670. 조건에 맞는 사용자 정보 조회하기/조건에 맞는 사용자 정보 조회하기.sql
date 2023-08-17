@@ -9,6 +9,3 @@ SELECT user_id
                     GROUP BY writer_id
                     HAVING COUNT(*) >= 3)
  ORDER BY user_id DESC
- 
-
-
