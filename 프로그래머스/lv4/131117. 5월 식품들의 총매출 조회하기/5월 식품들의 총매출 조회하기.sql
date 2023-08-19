@@ -1,9 +1,8 @@
--- 코드를 입력하세요
-SELECT fp.product_id
-      ,fp.product_name
-      ,SUM(amount * price) total_sales
-  FROM food_product fp
-       LEFT JOIN food_order fo ON fp.product_id = fo.product_id
+SELECT p.product_id 
+      ,p.product_name
+      ,SUM(price * amount) total_sales
+  FROM food_product p
+       INNER JOIN food_order o ON p.product_id = o.product_id
  WHERE produce_date BETWEEN '2022-05-01' AND '2022-05-31'
- GROUP BY product_id
+ GROUP BY p.product_id
  ORDER BY total_sales DESC, product_id
