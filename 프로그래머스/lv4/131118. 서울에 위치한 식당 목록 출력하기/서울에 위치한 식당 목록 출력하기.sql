@@ -1,12 +1,11 @@
--- 코드를 입력하세요
-SELECT ri.rest_id
-      ,ri.rest_name
-      ,ri.food_type
-      ,ri.favorites
-      ,ri.address
-      ,ROUND(AVG(rr.review_score), 2) score
-  FROM rest_info ri 
-       INNER JOIN rest_review rr ON ri.rest_id = rr.rest_id 
- WHERE address REGEXP '^서울'
+SELECT i.rest_id
+      ,rest_name
+      ,food_type
+      ,favorites
+      ,address
+      ,ROUND(AVG(review_score), 2) score
+  FROM rest_info i
+       INNER JOIN rest_review r ON i.rest_id = r.rest_id
+ WHERE address LIKE '서울%'
  GROUP BY rest_id
  ORDER BY score DESC, favorites DESC
