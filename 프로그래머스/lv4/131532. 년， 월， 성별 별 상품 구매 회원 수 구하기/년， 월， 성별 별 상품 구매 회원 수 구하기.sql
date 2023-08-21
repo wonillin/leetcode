@@ -2,7 +2,7 @@
 SELECT YEAR(sales_date) 'year'
       ,MONTH(sales_date) 'month'
       ,gender
-      ,COUNT(DISTINCT os.user_id) 'users'
+      ,COUNT(DISTINCT os.user_id) user
   FROM online_sale os
        INNER JOIN user_info ui ON os.user_id = ui.user_id
  WHERE gender IS NOT NULL
