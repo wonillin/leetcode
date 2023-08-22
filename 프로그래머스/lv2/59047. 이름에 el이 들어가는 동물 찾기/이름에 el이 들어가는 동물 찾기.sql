@@ -1,7 +1,6 @@
--- 코드를 입력하세요
-SELECT ANIMAL_ID
-      ,NAME
-  FROM ANIMAL_INS
- WHERE LOWER(NAME) LIKE '%el%' 
-   AND ANIMAL_TYPE = 'Dog'
- ORDER BY NAME
+SELECT animal_id
+      ,name
+  FROM animal_ins
+ WHERE name REGEXP 'el'
+   AND animal_type = 'Dog'
+ ORDER BY name
