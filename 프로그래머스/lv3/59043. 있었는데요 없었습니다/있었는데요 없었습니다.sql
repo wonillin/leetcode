@@ -4,4 +4,4 @@ SELECT i.animal_id
   FROM animal_ins i
        INNER JOIN animal_outs o ON i.animal_id = o.animal_id
  WHERE i.datetime > o.datetime
- ORDER BY i.datetime 
+ ORDER BY i.datetime
