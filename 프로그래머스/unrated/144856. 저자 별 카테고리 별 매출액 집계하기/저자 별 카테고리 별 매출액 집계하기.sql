@@ -8,5 +8,3 @@ SELECT b.author_id
  WHERE sales_date BETWEEN '2022-01-01' AND '2022-01-31'
  GROUP BY author_id, category
  ORDER BY author_id, category DESC
- 
- 
