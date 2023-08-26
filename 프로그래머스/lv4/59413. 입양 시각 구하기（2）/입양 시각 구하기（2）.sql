@@ -12,4 +12,3 @@ SELECT hour
        RIGHT JOIN cte ON hour(ao.datetime) = hour 
  GROUP BY hour
  ORDER BY hour
-
