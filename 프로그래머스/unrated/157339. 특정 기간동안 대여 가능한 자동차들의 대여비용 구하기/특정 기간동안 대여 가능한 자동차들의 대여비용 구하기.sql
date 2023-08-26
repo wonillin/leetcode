@@ -3,7 +3,7 @@ WITH cte AS
 (SELECT DISTINCT cc.car_id
       ,cc.car_type
       ,daily_fee
-      ,CASE WHEN duration_type = '30일 이상' THEN ((1 - (discount_rate * 0.01)) * daily_fee) * 30 END fee
+      ,CASE WHEN duration_type = '30일 이상' THEN ((1 - (discount_rate * 0.01)) * daily_fee) * LEFT(duration_type, 2) END fee
   FROM car_rental_company_car cc
        LEFT JOIN car_rental_company_rental_history rh ON cc.car_id = rh.car_id
        LEFT JOIN car_rental_company_discount_plan dp ON cc.car_type = dp.car_type
