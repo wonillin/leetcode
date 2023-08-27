@@ -18,12 +18,3 @@ SELECT car_id
   FROM cte
  WHERE (fee >= 500000 AND fee < 2000000)
  ORDER BY fee DESC, car_type, car_id DESC
-   
-# SELECT cc.car_id
-#       ,cc.car_type
-#       ,start_date
-#       ,(DATEDIFF(end_date, start_date) + 1) * daily_fee
-#   FROM car_rental_company_car cc
-#        LEFT JOIN car_rental_company_rental_history rh ON cc.car_id = rh.car_id
-#  WHERE cc.car_type REGEXP '세단|suv'
-#    AND '2022-11' NOT BETWEEN DATE_FORMAT(start_date, '%Y-%m') AND DATE_FORMAT(end_date, '%Y-%m')
