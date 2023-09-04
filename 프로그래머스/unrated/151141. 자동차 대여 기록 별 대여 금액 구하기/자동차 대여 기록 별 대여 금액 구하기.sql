@@ -14,7 +14,7 @@ cdp AS
    
    
 SELECT history_id
-      ,CASE WHEN duration < 7 THEN FLOOR(duration * daily_fee)
+      ,CASE WHEN duration < d_type THEN FLOOR(duration * daily_fee)
             ELSE FLOOR((duration * daily_fee) * (1 - (discount_rate * 0.01)))
          END fee
  from cte
