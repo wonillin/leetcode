@@ -2,26 +2,27 @@ WITH cte AS
 (SELECT history_id
       ,car_type
       ,daily_fee
-      ,DATEDIFF(end_date, start_date) + 1 rental_date
-  FROM car_rental_company_car cc
-       LEFT JOIN car_rental_company_rental_history cr ON cc.car_id = cr.car_id
- WHERE car_type = '트럭'
-)
-
-SELECT history_id 
-      ,MIN(fee) fee
-  FROM 
-(SELECT history_id
-       ,CASE WHEN rental_date < duration_type THEN FLOOR(daily_fee * rental_date)
-             ELSE FLOOR(discount_rate * daily_fee * rental_date)
+      ,DATEDIFF(end_date, start_date) + 1 duration
+   FROM car_rental_company_car cc
+        LEFT JOIN car_rental_company_rental_history crh ON cc.car_id = crh.car_id
+  WHERE car_type = '트럭'),
+cdp AS
+(SELECT car_type
+       ,discount_rate
+       ,SUBSTRING_INDEX(duration_type, '일', 1) d_type
+   FROM car_rental_company_discount_plan cdp)
+   
+   
+SELECT history_id
+      ,CASE WHEN duration < 7 THEN FLOOR(duration * daily_fee)
+            ELSE FLOOR((duration * daily_fee) * (1 - (discount_rate * 0.01)))
          END fee
-  FROM
-(SELECT history_id
-       ,daily_fee
-       ,rental_date
-       ,REGEXP_REPLACE(duration_type,'[가-힣]','') duration_type
-       ,1 - (discount_rate * 0.01)  discount_rate
-  FROM cte
-       LEFT JOIN car_rental_company_discount_plan dp ON cte.car_type = dp.car_type) a ) b
- GROUP BY history_id
- ORDER BY FEE DESC, HISTORY_ID DESC
+ from cte
+        LEFT JOIN cdp ON cte.car_type = cdp.car_type
+ WHERE (history_id, ABS(d_type - duration)) IN (SELECT history_id
+                                                      ,MIN(ABS(d_type - duration))
+                                                  FROM cte 
+                                                       LEFT JOIN cdp ON cte.car_type = cdp.car_type
+                                                  GROUP BY 1)
+ 
+ order by fee DESC, history_id DESC
