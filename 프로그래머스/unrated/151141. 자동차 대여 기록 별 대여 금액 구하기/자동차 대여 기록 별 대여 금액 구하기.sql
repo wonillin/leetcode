@@ -17,12 +17,12 @@ SELECT history_id
       ,CASE WHEN duration < d_type THEN FLOOR(duration * daily_fee)
             ELSE FLOOR((duration * daily_fee) * (1 - (discount_rate * 0.01)))
          END fee
- from cte
-        LEFT JOIN cdp ON cte.car_type = cdp.car_type
+  FROM cte
+       LEFT JOIN cdp ON cte.car_type = cdp.car_type
  WHERE (history_id, ABS(d_type - duration)) IN (SELECT history_id
                                                       ,MIN(ABS(d_type - duration))
                                                   FROM cte 
                                                        LEFT JOIN cdp ON cte.car_type = cdp.car_type
-                                                  GROUP BY 1)
+                                                 GROUP BY 1)
  
- order by fee DESC, history_id DESC
+ ORDER BY fee DESC, history_id DESC
