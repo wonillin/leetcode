@@ -1,4 +1,3 @@
-
 WITH cte AS(
  SELECT board_id
    FROM used_goods_board
