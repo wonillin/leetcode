@@ -5,5 +5,3 @@ SELECT *
                     GROUP BY host_id
                     HAVING COUNT(*) > 1)
  ORDER BY id
-
-               
