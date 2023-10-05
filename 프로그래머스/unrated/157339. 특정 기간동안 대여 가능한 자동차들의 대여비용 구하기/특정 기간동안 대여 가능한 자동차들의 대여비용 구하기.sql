@@ -9,10 +9,7 @@ WITH cte AS
                      )
    AND car_type REGEXP '세단|SUV')
    
-   
 
-   
-   
    
 SELECT cte.car_id
       ,cdp.car_type
