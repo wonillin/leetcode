@@ -1,8 +1,11 @@
-SELECT car_id 
-      ,IF(availablity = 1, '대여중', '대여 가능') availablity
-  FROM
-(SELECT car_id 
-      ,SUM(IF('2022-10-16' BETWEEN start_date AND end_date, '1', '0')) availablity
+WITH cte AS
+(SELECT *
+       ,IF('2022-10-16' BETWEEN start_date AND end_date, 1, 2) a
   FROM car_rental_company_rental_history
- GROUP BY car_id) a
- ORDER BY car_id DESC
+ )
+ 
+SELECT car_id
+      ,IF(MIN(a) = 1, '대여중', '대여 가능') availabilty
+  FROM CTE 
+ GROUP BY 1
+ ORDER BY 1 DESC
