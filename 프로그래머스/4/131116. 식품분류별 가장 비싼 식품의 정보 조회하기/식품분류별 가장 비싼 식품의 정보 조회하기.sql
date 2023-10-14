@@ -8,4 +8,3 @@ SELECT category
                               GROUP BY category)
    AND category IN ('과자', '국', '김치', '식용유')
  ORDER BY max_price DESC
-                              
